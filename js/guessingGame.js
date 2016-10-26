@@ -1,3 +1,71 @@
+
+// Game constructor function
+
+function Game() {
+	this.playersGuess = null;
+	this.pastGuesses = [];
+	this.winningNumber = generateWinningNumber();
+}
+
+// Functions on Game.prototype
+
+Game.prototype.difference = function() {
+	return Math.abs(this.playersGuess - this.winningNumber);
+};
+
+Game.prototype.isLower = function() {
+	return this.playersGuess < this.winningNumber;
+};
+
+Game.prototype.playersGuessSubmission = function(num) {
+	if (isNaN(num) || num < 1 || num > 100) {
+		$('h1').text('That is an invalid guess.');
+	} else {
+		this.playersGuess = num;
+		return this.checkGuess();
+	}
+};
+
+Game.prototype.provideHint = function() {
+	let hintArray = [this.winningNumber, generateWinningNumber(), generateWinningNumber()];
+	return shuffle(hintArray);
+};
+
+Game.prototype.checkGuess = function() {
+	if (this.winningNumber === this.playersGuess) {
+		$('#title').text('You Win!');
+		$('#subtitle').text('Click Reset to play again');
+		disableButtons(true);
+	}
+	else {
+		if (this.pastGuesses.includes(this.playersGuess)) {
+			$('#title').text('You have already guessed that number.');
+		}
+		else {
+			this.pastGuesses.push(this.playersGuess);
+			$('#guess-list li:nth-child(' + this.pastGuesses.length + ')').text(this.playersGuess);
+			if (this.pastGuesses.length === 5) {
+				$('#title').text('You Lose.');
+				$('#subtitle').text('Click Reset to play again');
+				disableButtons(true);
+			}
+			else {
+				let guessDiff = this.difference();
+				if(this.isLower()) $('#subtitle').text('Guess Higher!');
+        else $('#subtitle').text('Guess Lower!');
+
+				if (guessDiff < 10) $('#title').text('You\'re burning up!');
+				else if (guessDiff < 25) $('#title').text('You\'re lukewarm.');
+				else if (guessDiff < 50) $('#title').text('You\'re a bit chilly.');
+				else $('#title').text('You\'re ice cold!');
+			}
+		}
+	}
+};
+
+
+// Helper functions
+
 function generateWinningNumber() {
 	return Math.ceil(Math.random() * 100);
 }
@@ -20,67 +88,6 @@ function newGame() {
 	return game;
 }
 
-function Game() {
-	this.playersGuess = null;
-	this.pastGuesses = [];
-	this.winningNumber = generateWinningNumber();
-}
-
-Game.prototype.difference = function() {
-	return Math.abs(this.playersGuess - this.winningNumber);
-};
-
-Game.prototype.isLower = function() {
-	return this.playersGuess < this.winningNumber;
-};
-
-Game.prototype.playersGuessSubmission = function(num) {
-	if (isNaN(num) || num < 1 || num > 100) {
-		$('h1').text('That is an invalid guess.');
-	} else {
-		this.playersGuess = num;
-		return this.checkGuess();
-	}
-};
-
-Game.prototype.checkGuess = function() {
-	let guessDiff = this.difference();
-	if (this.winningNumber === this.playersGuess) {
-		$('#title').text('You Win!');
-		$('#subtitle').text('Click Reset to play again');
-		disableButtons(true);
-	}
-	else {
-		if (this.pastGuesses.includes(this.playersGuess)) {
-			$('#title').text('You have already guessed that number.');
-		}
-		else {
-			this.pastGuesses.push(this.playersGuess);
-			$('#guess-list li:nth-child(' + this.pastGuesses.length + ')').text(this.playersGuess);
-			if (this.pastGuesses.length === 5) {
-				$('#title').text('You Lose.');
-				$('#subtitle').text('Click Reset to play again');
-				disableButtons(true);
-			}
-			else {
-				if (guessDiff < 10) {
-					$('#title').text('You\'re burning up!');
-				} else if (guessDiff < 25 && guessDiff >= 10) {
-					$('#title').text('You\'re lukewarm.');
-				} else if (guessDiff < 50 && guessDiff >= 25) {
-					$('#title').text('You\'re a bit chilly.');
-				} else {
-					$('#title').text('You\'re ice cold!');
-				}
-			}
-		}
-	}
-};
-
-Game.prototype.provideHint = function() {
-	let hintArray = [this.winningNumber, generateWinningNumber(), generateWinningNumber()];
-	return shuffle(hintArray);
-};
 
 function disableButtons(bool) {
 	$('#submit, #hint, #players-input').attr('disabled', bool);
@@ -92,9 +99,15 @@ function submitGuess(game) {
 		$('#players-input').val('');
 }
 
+// JQuery
+
 $(document).ready(function() {
 
+	// new game loads
+
 	let game = newGame();
+
+	// Event handlers
 
 	$('#submit').click(function() {
 		submitGuess(game);
