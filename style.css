@@ -39,6 +39,7 @@ img {
 }
 
 #players-input {
+  outline: none;
   width: 160px;
   height: 160px;
   border-radius: 50%;
@@ -50,6 +51,7 @@ img {
 }
 
 #submit {
+  outline: none;
   text-align: center;
   width: 60px;
   height: 60px;
