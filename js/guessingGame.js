@@ -46,29 +46,31 @@ Game.prototype.playersGuessSubmission = function(num) {
 Game.prototype.checkGuess = function() {
 	let guessDiff = this.difference();
 	if (this.winningNumber === this.playersGuess) {
-		$('h1').text('You Win!');
+		$('#title').text('You Win!');
+		$('#subtitle').text('Click Reset to play again');
 		disableButtons(true);
 	}
 	else {
 		if (this.pastGuesses.includes(this.playersGuess)) {
-			$('h1').text('You have already guessed that number.');
+			$('#title').text('You have already guessed that number.');
 		}
 		else {
 			this.pastGuesses.push(this.playersGuess);
 			$('#guess-list li:nth-child(' + this.pastGuesses.length + ')').text(this.playersGuess);
 			if (this.pastGuesses.length === 5) {
-				$('h1').text('You Lose.');
+				$('#title').text('You Lose.');
+				$('#subtitle').text('Click Reset to play again');
 				disableButtons(true);
 			}
 			else {
 				if (guessDiff < 10) {
-					$('h1').text('You\'re burning up!');
+					$('#title').text('You\'re burning up!');
 				} else if (guessDiff < 25 && guessDiff >= 10) {
-					$('h1').text('You\'re lukewarm.');
+					$('#title').text('You\'re lukewarm.');
 				} else if (guessDiff < 50 && guessDiff >= 25) {
-					$('h1').text('You\'re a bit chilly.');
+					$('#title').text('You\'re a bit chilly.');
 				} else {
-					$('h1').text('You\'re ice cold!');
+					$('#title').text('You\'re ice cold!');
 				}
 			}
 		}
@@ -81,7 +83,7 @@ Game.prototype.provideHint = function() {
 };
 
 function disableButtons(bool) {
-	$('#submit, #hint').attr('disabled', bool);
+	$('#submit, #hint, #players-input').attr('disabled', bool);
 }
 
 function submitGuess(game) {
@@ -102,6 +104,8 @@ $(document).ready(function() {
 		game = newGame();
 		disableButtons(false);
 		$('#guess-list').children('li').text('-');
+		$('#title').text('Guessing Game');
+		$('#subtitle').text('Guess a number between 1 and 100');
 	});
 
 	$('#players-input').keypress(function(event) {
