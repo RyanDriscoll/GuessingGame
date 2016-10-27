@@ -27,8 +27,13 @@ Game.prototype.playersGuessSubmission = function(num) {
 };
 
 Game.prototype.provideHint = function() {
-	let hintArray = [this.winningNumber, generateWinningNumber(), generateWinningNumber()];
-	return shuffle(hintArray);
+	let hintArray = [this.winningNumber];
+	let guessesLeft = 5 - this.pastGuesses.length;
+	for (let count = 0; count < guessesLeft + 1; count++) {
+		hintArray.push(generateWinningNumber());
+	}
+	let hintString = 'Try one of these...' + shuffle(hintArray).join(', ');
+	return hintString;
 };
 
 Game.prototype.checkGuess = function() {
@@ -113,6 +118,12 @@ $(document).ready(function() {
 		submitGuess(game);
 	});
 
+	$('#players-input').keypress(function(event) {
+		if (event.which === 13) {
+			submitGuess(game);
+		}
+	});
+
 	$('#reset').click(function() {
 		game = newGame();
 		disableButtons(false);
@@ -121,10 +132,9 @@ $(document).ready(function() {
 		$('#subtitle').text('Guess a number between 1 and 100');
 	});
 
-	$('#players-input').keypress(function(event) {
-		if (event.which === 13) {
-			submitGuess(game);
-		}
+	$('#hint').click(function() {
+		let hint = game.provideHint();
+		$('#subtitle').text(hint);
 	});
 
 });
