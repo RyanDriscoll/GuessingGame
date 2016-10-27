@@ -1,12 +1,12 @@
 body {
-  background-image: url('../images/wood-background.jpg');
+  background-image: url('../images/question-mark.jpg');
 }
 
 #app {
   width: 60%;
   margin: 50px auto;
   border-radius: 10%;
-  background-color: rgba(238, 201, 137, 0.5);
+  background-color: rgba(256, 256, 256, 0.5);
 }
 
 .center {
