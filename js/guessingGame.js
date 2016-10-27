@@ -50,7 +50,7 @@ Game.prototype.checkGuess = function() {
 			this.pastGuesses.push(this.playersGuess);
 			$('#guess-list li:nth-child(' + this.pastGuesses.length + ')').text(this.playersGuess);
 			if (this.pastGuesses.length === 5) {
-				$('#title').text('You Lose.');
+				$('#title').text(`You Lose. It was ${this.winningNumber}!`);
 				$('#subtitle').text('Click Reset to play again');
 				disableButtons(true);
 			}
