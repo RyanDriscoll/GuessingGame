@@ -24,7 +24,7 @@ img {
     height: 100px;
 }
 
-.btn, #players-input {
+#hint, #submit, #reset, #players-input {
   outline: none;
 }
 
