@@ -9,54 +9,57 @@
   </head>
   <body>
 
-      <div id='app' class='center container'>
+    <div id='app' class='center container'>
+      <div class='row'>
+        <div class='col-xs-10 col-xs-offset-1'>
 
-        <div id='headers'>
-          <h1 id='title'>Guessing Game</h1>
-          <h2 id='subtitle'>Guess a number between 1 and 100</h2>
-        </div>
-
-        <div id='main'>
-          <div id='parent-input'>
-            <input id='players-input' class='center' placeholder="#" maxlength='3'></input>
-            <button id='submit' class='btn btn-success'>Go!</button>
+          <div id='headers'>
+            <h1 id='title'>Guessing Game</h1>
+            <h2 id='subtitle'>Guess a number between 1 and 100</h2>
           </div>
 
-          <div id='guesses'>
-            <ul id='guess-list'>
-              <li class='guess'>-</li>
-              <li class='guess'>-</li>
-              <li class='guess'>-</li>
-              <li class='guess'>-</li>
-              <li class='guess'>-</li>
-            </ul>
-          </div>
+          <div id='main'>
+            <div id='parent-input'>
+              <input id='players-input' class='center' placeholder="#" maxlength='3'></input>
+              <button id='submit' class='btn btn-lg btn-success'>Go!</button>
+            </div>
 
-          <div id="menu-btns">
-            <button class='btn btn-warning' id='reset'>Reset</button>
-            <button class='btn btn-info' id='hint'>Hint</button>
+            <div id='guesses'>
+              <ul id='guess-list'>
+                <li class='guess'>-</li>
+                <li class='guess'>-</li>
+                <li class='guess'>-</li>
+                <li class='guess'>-</li>
+                <li class='guess'>-</li>
+              </ul>
+            </div>
+
+            <div id="menu-btns">
+              <button class='btn btn-lg btn-warning' id='reset'>Reset</button>
+              <button class='btn btn-lg btn-info' id='hint'>Hint</button>
+            </div>
           </div>
         </div>
       </div>
+    </div>
 
 
 
     <div id='footer' class='center'>
-        <div class='row'>
-          <div class='col-sm-4'>
-            <img src='images/fa-logo@2x.png'></img>
-          </div>
-
-          <div id='author' class='col-sm-4'>
-            <h4>Project by Ryan Driscoll</h4>
-          </div>
-
-          <div class='col-sm-4'>
-            <img src='images/grace_hopper_academy.png'></img>
-          </div>
-
-
+      <div class='row'>
+        <div class='col-sm-4'>
+          <img src='images/fa-logo@2x.png'></img>
         </div>
+
+        <div id='author' class='col-sm-4'>
+          <h4>Project by Ryan Driscoll</h4>
+        </div>
+
+        <div class='col-sm-4'>
+          <img src='images/grace_hopper_academy.png'></img>
+        </div>
+
+      </div>
     </div>
 
     <script src="js/jquery.min.js"></script>
