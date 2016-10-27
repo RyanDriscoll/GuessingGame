@@ -3,7 +3,7 @@ body {
 }
 
 #app {
-  width: 60%;
+  width: 650px;
   margin: 50px auto;
   border-radius: 2%;
   background-color: rgba(256, 256, 256, 0.5);
@@ -34,6 +34,10 @@ img {
     background-color: white;
     position: fixed;
     bottom: 0;
+}
+
+#author {
+  padding-top: 30px;
 }
 
 #parent-input {
