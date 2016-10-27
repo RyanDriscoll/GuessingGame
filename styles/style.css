@@ -19,9 +19,12 @@ ul {
 }
 
 img {
-    display: inline;
     width: 200px;
     height: 100px;
+}
+
+#hint, #reset {
+  width: 80px;
 }
 
 #hint, #submit, #reset, #players-input {
