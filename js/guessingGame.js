@@ -50,10 +50,10 @@ Game.prototype.checkGuess = function() {
 				disableButtons(true);
 			}
 			else {
-				let guessDiff = this.difference();
-				if(this.isLower()) $('#subtitle').text('Guess Higher!');
+				if (this.isLower()) $('#subtitle').text('Guess Higher!');
         else $('#subtitle').text('Guess Lower!');
 
+				let guessDiff = this.difference();
 				if (guessDiff < 10) $('#title').text('You\'re burning up!');
 				else if (guessDiff < 25) $('#title').text('You\'re lukewarm.');
 				else if (guessDiff < 50) $('#title').text('You\'re a bit chilly.');
