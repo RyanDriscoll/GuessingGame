@@ -89,7 +89,6 @@ function shuffle(arr) {
 
 function newGame() {
 	let game = new Game();
-	console.log(game.winningNumber);
 	return game;
 }
 
