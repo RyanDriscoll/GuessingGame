@@ -32,7 +32,7 @@ Game.prototype.provideHint = function() {
 	for (let count = 0; count < guessesLeft + 1; count++) {
 		hintArray.push(generateWinningNumber());
 	}
-	let hintString = 'Try one of these...' + shuffle(hintArray).join(', ');
+	let hintString = `Try one of these... ${shuffle(hintArray).join(', ')}`;
 	return hintString;
 };
 
